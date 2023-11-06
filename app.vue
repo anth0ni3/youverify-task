@@ -1,6 +1,4 @@
 <template>
-  <div>
-    
-  </div>
+  <div class="text-5xl">lglgl</div>
   <NuxtPage />
 </template>
