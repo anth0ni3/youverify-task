@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
 
-const _form = formState()
+const _form = templateState().value.formData
+const dragging = isDragActive().value
 
 // function log(evt) {
 //   window.console.log(_form.value.data)
@@ -12,17 +13,17 @@ const _form = formState()
   <div
     :class="
       cn(
-        'grow min-h-full py-6 px-8  bg-slate-50 rounded-lg border-2 border-slate-500 relative',
-        _form.draggable ? ' border-blue-700 ' : ''
+        'grow min-h-full p-4 md:py-6 md:px-8  bg-slate-50 rounded-lg border-2 border-slate-500 relative',
+        dragging ? ' border-blue-700 ' : ''
       )
     "
   >
-    <template v-if="_form.data?.length == 0">
+    <template v-if="_form?.length == 0">
       <div class="absolute inset-0 grid place-content-center">No form element. Drag n drop</div>
     </template>
     <draggable
       class="h-full space-y-4"
-      v-model="_form.data"
+      v-model="_form"
       group="form_stuff"
       item-key="name"
       animation="150"

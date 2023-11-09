@@ -35,16 +35,11 @@ const table = useVueTable({
     },
   },
 })
-
-const mounted = ref(false)
-onMounted(() => {
-  mounted.value = true
-})
 </script>
 
 <template>
   <div>
-    <template v-if="mounted">
+    <ClientOnly>
       <Teleport to="#table_filter">
         <UIInput
           class="w-full"
@@ -53,7 +48,7 @@ onMounted(() => {
           @update:model-value="table.getColumn('name')?.setFilterValue($event)"
         />
       </Teleport>
-    </template>
+    </ClientOnly>
 
     <div class="">
       <UITable>

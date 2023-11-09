@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {inputTemplateElements, layoutTemplateElements} from '~/components/templates/elements'
 import draggable from 'vuedraggable'
-import {formState} from '#imports'
 
 const list1 = ref([
   {id: 1, name: 'Item 1'},
@@ -12,7 +11,8 @@ const list1 = ref([
 
 let idGlobal = 8
 
-const _form = formState()
+const _form = templateState().value.formData
+const dragging = isDragActive().value
 
 // function log(evt) {
 //   window.console.log(evt)
@@ -44,8 +44,8 @@ function cloneDog(d: any) {
           :clone="cloneDog"
           :sort="false"
           handle="#drag_handle"
-          @start="_form.draggable = true"
-          @end="_form.draggable = false"
+          @start="dragging = true"
+          @end="dragging = false"
           item-key="name"
         >
           <template #item="{element}">

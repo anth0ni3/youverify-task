@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { useAttrs } from 'vue'
-import { useFormField } from './useFormField'
-import { cn } from '~/utils'
+import {useAttrs} from 'vue'
+import {useFormField} from './use-form-field'
+import {cn} from '~/utils'
 
 defineOptions({
   inheritAttrs: false,
 })
 
-const { formDescriptionId } = useFormField()
-const { class: className, ...rest } = useAttrs()
+const {formDescriptionId} = useFormField()
+const {class: className, ...rest} = useAttrs()
 </script>
 
 <template>

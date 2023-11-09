@@ -1,4 +1,5 @@
 const animate = require('tailwindcss-animate')
+// const {screens} = require('@nuxtjs/tailwindcss').defaultTheme
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,9 +8,11 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: '1.25rem',
       screens: {
-        '2xl': '1400px',
+        xs: '100%',
+        // ...screens,
+        // '2xl': '1400px',
       },
     },
     extend: {
