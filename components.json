@@ -2,14 +2,14 @@
   "style": "default",
   "typescript": true,
   "tailwind": {
-    "config": "tailwind.config.js",
+    "config": "tailwind.config.ts",
     "css": "assets/css/tailwind.css",
-    "baseColor": "gray",
+    "baseColor": "stone",
     "cssVariables": true
   },
   "framework": "nuxt",
   "aliases": {
-    "components": "@/components",
-    "utils": "@/utils"
+    "components": "~/components",
+    "utils": "~/utils"
   }
 }

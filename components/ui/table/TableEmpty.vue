@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TableRow from './TableRow.vue'
 import TableCell from './TableCell.vue'
-import { cn } from '@/utils'
+import { cn } from '~/utils'
 
 interface Props {
   class?: string

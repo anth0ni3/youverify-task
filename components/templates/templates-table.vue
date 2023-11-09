@@ -37,21 +37,29 @@ const table = useVueTable({
     },
   },
 })
+
+const mounted = ref(false)
+onMounted(() => {
+  mounted.value = true
+})
 </script>
 
 <template>
   <div>
-    <div class="flex items-center py-4">
-      <Input
-        class="max-w-sm"
-        placeholder="Filter emails..."
-        :model-value="table.getColumn('email')?.getFilterValue() as string"
-        @update:model-value="$event => table.getColumn('email')?.setFilterValue($event)"
-      />
-    </div>
-    <div class="border rounded-md">
+    <template v-if="mounted">
+      <Teleport to="#table_filter">
+        <Input
+          class="w-full"
+          placeholder="Filter templates..."
+          :model-value="table.getColumn('name')?.getFilterValue() as string"
+          @update:model-value="table.getColumn('name')?.setFilterValue($event)"
+        />
+      </Teleport>
+    </template>
+
+    <div class="">
       <Table>
-        <TableHeader>
+        <TableHeader class="bg-gray-50 border-b border-gray-400">
           <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
             <TableHead v-for="header in headerGroup.headers" :key="header.id">
               <FlexRender
@@ -68,8 +76,9 @@ const table = useVueTable({
               v-for="row in table.getRowModel().rows"
               :key="row.id"
               :data-state="row.getIsSelected() ? 'selected' : undefined"
+              class="border-b-0"
             >
-              <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
+              <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id" class="pl-8 py-6">
                 <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
               </TableCell>
             </TableRow>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useVModel} from '@vueuse/core'
-import {cn} from '@/utils'
+import {cn} from '~/utils'
 
 const props = defineProps<{
   defaultValue?: string | number

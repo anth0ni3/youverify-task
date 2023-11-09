@@ -6,7 +6,7 @@
       <LogoMark />
       <LogoText />
     </div>
-    <div id="expand_btn"></div>
+    <div id="expand_btn" />
     <div class="w-full max-w-md ml-auto">
       <Search class="" />
     </div>

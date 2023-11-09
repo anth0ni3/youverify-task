@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const expanded = ref(true)
+const mounted = ref(false)
+onMounted(() => {
+  mounted.value = true
+})
 </script>
 
 <template>
@@ -11,18 +15,20 @@ const expanded = ref(true)
       )
     "
   >
-    <Teleport to="#expand_btn">
-      <button
-        class="w-8 h-8 bg-white rounded-full shadow-md border grid place-content-center"
-        @click="expanded = !expanded"
-      >
-        <ArrowLeft
-          :style="{
-            rotate: expanded ? '0deg' : '180deg',
-            transition: 'rotate 500ms ',
-          }"
-        />
-      </button>
-    </Teleport>
+    <template v-if="mounted">
+      <Teleport to="#expand_btn">
+        <button
+          class="w-8 h-8 bg-white rounded-full shadow-md border grid place-content-center"
+          @click="expanded = !expanded"
+        >
+          <ArrowLeft
+            :style="{
+              rotate: expanded ? '0deg' : '180deg',
+              transition: 'rotate 500ms ',
+            }"
+          />
+        </button>
+      </Teleport>
+    </template>
   </aside>
 </template>

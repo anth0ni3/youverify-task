@@ -1,22 +1,31 @@
 import type {ColumnDef} from '@tanstack/vue-table'
 import {Button} from '../ui/button'
+import {ArrowUpDown} from 'lucide-vue-next'
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export interface Templates {
   id: string
-  amount: number
-  status: 'pending' | 'processing' | 'success' | 'failed'
-  email: string
+  name: string
+  modified_by: string
+  created_at: string
+  updated_at: string
 }
 
 export const columns: ColumnDef<Templates>[] = [
   {
-    accessorKey: 'status',
-    header: 'Status',
+    accessorKey: 'name',
+    header: ({column}) => {
+      return h(
+        Button,
+        {
+          variant: 'ghost',
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+        },
+        () => ['Name', h(ArrowUpDown, {class: 'ml-2 h-4 w-4'})]
+      )
+    },
   },
   {
-    accessorKey: 'email',
+    accessorKey: 'modified_by',
 
     header: ({column}) => {
       return h(
@@ -25,13 +34,35 @@ export const columns: ColumnDef<Templates>[] = [
           variant: 'ghost',
           onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
         },
-        () => ['Email', h('div', {class: 'ml-2 h-4 w-4'})]
+        () => ['Modified By', h(ArrowUpDown, {class: 'ml-2 h-4 w-4'})]
       )
     },
-    cell: ({row}) => h('div', {class: 'lowercase'}, row.getValue('email')),
+    cell: ({row}) => h('div', {class: 'lowercase'}, row.getValue('modified_by')),
   },
   {
-    accessorKey: 'amount',
-    header: 'Amount',
+    accessorKey: 'created_at',
+    header: ({column}) => {
+      return h(
+        Button,
+        {
+          variant: 'ghost',
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+        },
+        () => ['Date Created', h(ArrowUpDown, {class: 'ml-2 h-4 w-4'})]
+      )
+    },
+  },
+  {
+    accessorKey: 'updated_at',
+    header: ({column}) => {
+      return h(
+        Button,
+        {
+          variant: 'ghost',
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+        },
+        () => ['Last Modified', h(ArrowUpDown, {class: 'ml-2 h-4 w-4'})]
+      )
+    },
   },
 ]
