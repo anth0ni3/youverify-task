@@ -18,6 +18,6 @@
         />
       </svg>
     </span>
-    <Input placeholder="Search. . ." class="pl-10 absolute inset-0" />
+    <UIInput placeholder="Search. . ." class="pl-10 absolute inset-0" />
   </div>
 </template>

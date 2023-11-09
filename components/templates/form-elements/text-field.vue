@@ -4,6 +4,6 @@
       <div class="text-gray-900 text-sm font-medium font-['BR Sonoma']">Subject</div>
       <Knob class="cursor-pointer" />
     </div>
-    <Input />
+    <UIInput />
   </div>
 </template>

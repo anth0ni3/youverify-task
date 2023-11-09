@@ -8,8 +8,6 @@ import {
   getFilteredRowModel,
 } from '@tanstack/vue-table'
 
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '../ui/table'
-
 const props = defineProps<{
   // @ts-ignore
   columns: ColumnDef<TData, TValue>[]
@@ -48,7 +46,7 @@ onMounted(() => {
   <div>
     <template v-if="mounted">
       <Teleport to="#table_filter">
-        <Input
+        <UIInput
           class="w-full"
           placeholder="Filter templates..."
           :model-value="table.getColumn('name')?.getFilterValue() as string"
@@ -58,40 +56,40 @@ onMounted(() => {
     </template>
 
     <div class="">
-      <Table>
-        <TableHeader class="bg-gray-50 border-b border-gray-400">
-          <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
-            <TableHead v-for="header in headerGroup.headers" :key="header.id">
+      <UITable>
+        <UITableHeader class="bg-gray-50 border-b border-gray-400">
+          <UITableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
+            <UITableHead v-for="header in headerGroup.headers" :key="header.id">
               <FlexRender
                 v-if="!header.isPlaceholder"
                 :render="header.column.columnDef.header"
                 :props="header.getContext()"
               />
-            </TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
+            </UITableHead>
+          </UITableRow>
+        </UITableHeader>
+        <UITableBody>
           <template v-if="table.getRowModel().rows?.length">
-            <TableRow
+            <UITableRow
               v-for="row in table.getRowModel().rows"
               :key="row.id"
               :data-state="row.getIsSelected() ? 'selected' : undefined"
               class="border-b-0"
             >
-              <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id" class="pl-8 py-6">
+              <UITableCell v-for="cell in row.getVisibleCells()" :key="cell.id" class="pl-8 py-6">
                 <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
-              </TableCell>
-            </TableRow>
+              </UITableCell>
+            </UITableRow>
           </template>
           <template v-else>
-            <TableRow>
-              <TableCell :colSpan="columns.length" class="h-24 text-center">
+            <UITableRow>
+              <UITableCell :colSpan="columns.length" class="h-24 text-center">
                 No results.
-              </TableCell>
-            </TableRow>
+              </UITableCell>
+            </UITableRow>
           </template>
-        </TableBody>
-      </Table>
+        </UITableBody>
+      </UITable>
     </div>
   </div>
 </template>

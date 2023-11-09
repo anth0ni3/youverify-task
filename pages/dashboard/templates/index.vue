@@ -28,37 +28,33 @@ const data = ref<Templates[]>([
       </h2>
       <div class="flex justify-between">
         <div id="table_filter" class="max-w-lg grow" />
-        <Dialog>
-          <DialogTrigger>
-            <Button><Plus />Create new templates</Button>
-          </DialogTrigger>
-          <DialogContent class="sm:max-w-[425px]">
+        <UIDialog>
+          <UIDialogTrigger>
+            <UIButton><Plus />Create new templates</UIButton>
+          </UIDialogTrigger>
+          <UIDialogContent class="sm:max-w-[425px]">
             <form action="" class="space-y-4">
-              <DialogHeader class="flex-row justify-between items-center gap-10">
-                <DialogTitle class="text-2xl leading-none">Create New Template</DialogTitle>
-                <DialogClose class="p-2 rounded-full" />
-              </DialogHeader>
+              <UIDialogHeader class="flex-row justify-between items-center gap-10">
+                <UIDialogTitle class="text-2xl leading-none">Create New Template</UIDialogTitle>
+                <UIDialogClose class="p-2 rounded-full" />
+              </UIDialogHeader>
               <div class="space-y-4">
                 <div class="space-y-2">
-                  <Label for="name" class="text-gray-900 text-sm font-medium font-['BR Sonoma']"
-                    >Template Name</Label
+                  <UILabel
+                    for="username"
+                    class="text-gray-900 text-sm font-medium font-['BR Sonoma']"
+                    >Description</UILabel
                   >
-                  <Input id="name" value="Pedro Duarte" class="col-span-3" />
-                </div>
-                <div class="space-y-2">
-                  <Label for="username" class="text-gray-900 text-sm font-medium font-['BR Sonoma']"
-                    >Description</Label
-                  >
-                  <Textarea placeholder="Type your message here." />
+                  <UITextarea placeholder="Type your message here." />
                 </div>
               </div>
-              <DialogFooter class="justify-center">
-                <!-- <Button type="submit">Create</Button> -->
+              <UIDialogFooter class="justify-center">
+                <!-- <UIButton type="submit">Create</UIButton> -->
                 <NuxtLink to="/dashboard/templates/new">Create</NuxtLink>
-              </DialogFooter>
+              </UIDialogFooter>
             </form>
-          </DialogContent>
-        </Dialog>
+          </UIDialogContent>
+        </UIDialog>
       </div>
     </div>
     <div>

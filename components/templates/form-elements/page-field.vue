@@ -35,22 +35,22 @@ const options = ref([
       <span class="absolute top-0 left-0 h-full w-12 z-10 grid place-content-center">
         <Page class="w-6 h-6" />
       </span>
-      <Input class="absolute inset-0 pl-11" />
+      <UIInput class="absolute inset-0 pl-11" />
     </div>
 
-    <RadioGroup default-value="comfortable">
+    <UIRadioGroup default-value="comfortable">
       <div class="flex items-center space-x-2">
-        <RadioGroupItem id="r1" value="default" />
-        <Label for="r1">Default</Label>
+        <UIRadioGroupItem id="r1" value="default" />
+        <UILabel for="r1">Default</UILabel>
       </div>
       <div class="flex items-center space-x-2">
-        <RadioGroupItem id="r2" value="comfortable" />
-        <Label for="r2">Comfortable</Label>
+        <UIRadioGroupItem id="r2" value="comfortable" />
+        <UILabel for="r2">Comfortable</UILabel>
       </div>
       <div class="flex items-center space-x-2">
-        <RadioGroupItem id="r3" value="compact" />
-        <Label for="r3">Compact</Label>
+        <UIRadioGroupItem id="r3" value="compact" />
+        <UILabel for="r3">Compact</UILabel>
       </div>
-    </RadioGroup>
+    </UIRadioGroup>
   </div>
 </template>

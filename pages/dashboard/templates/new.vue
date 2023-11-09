@@ -16,7 +16,7 @@
         <div class="text-gray-900 text-[32px] font-medium font-['BR Sonoma'] leading-[48px]">
           Templates
         </div>
-        <Button>Save</Button>
+        <UIButton>Save</UIButton>
       </div>
     </div>
     <div class="border-t border-t-secondary p-8 flex gap-6 grow overflow-y-auto">

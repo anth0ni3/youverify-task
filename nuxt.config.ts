@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   components: [
     {
+      path: '~/components/ui',
+      prefix: 'UI',
+    },
+    {
       path: '~/components',
       pathPrefix: false,
     },

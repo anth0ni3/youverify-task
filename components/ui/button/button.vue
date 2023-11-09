@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { buttonVariants } from '.'
-import { cn } from '~/utils'
+import {buttonVariants} from './variants'
+import {cn} from '~/utils'
 
 interface Props {
   variant?: NonNullable<Parameters<typeof buttonVariants>[0]>['variant']
@@ -14,10 +14,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <component
-    :is="as"
-    :class="cn(buttonVariants({ variant, size }), $attrs.class ?? '')"
-  >
+  <component :is="as" :class="cn(buttonVariants({variant, size}), $attrs.class ?? '')">
     <slot />
   </component>
 </template>

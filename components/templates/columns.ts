@@ -1,5 +1,5 @@
+import UIButton from '~/components/ui/button/button.vue'
 import type {ColumnDef} from '@tanstack/vue-table'
-import {Button} from '../ui/button'
 import {ArrowUpDown} from 'lucide-vue-next'
 
 export interface Templates {
@@ -15,7 +15,7 @@ export const columns: ColumnDef<Templates>[] = [
     accessorKey: 'name',
     header: ({column}) => {
       return h(
-        Button,
+        UIButton,
         {
           variant: 'ghost',
           onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
@@ -29,7 +29,7 @@ export const columns: ColumnDef<Templates>[] = [
 
     header: ({column}) => {
       return h(
-        Button,
+        UIButton,
         {
           variant: 'ghost',
           onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
@@ -43,7 +43,7 @@ export const columns: ColumnDef<Templates>[] = [
     accessorKey: 'created_at',
     header: ({column}) => {
       return h(
-        Button,
+        UIButton,
         {
           variant: 'ghost',
           onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
@@ -56,7 +56,7 @@ export const columns: ColumnDef<Templates>[] = [
     accessorKey: 'updated_at',
     header: ({column}) => {
       return h(
-        Button,
+        UIButton,
         {
           variant: 'ghost',
           onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
