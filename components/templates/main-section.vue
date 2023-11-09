@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
 
-const _form = templateState().value.formData
-const dragging = isDragActive().value
+const _form = templateState()
+// const _form = ref([])
+const dragging = isDragActive()
+
+watchEffect(() => console.log(templateState().value))
 
 // function log(evt) {
-//   window.console.log(_form.value.data)
+//   window.console.log(_form.value)
 // }
 </script>
 
@@ -18,12 +21,12 @@ const dragging = isDragActive().value
       )
     "
   >
-    <template v-if="_form?.length == 0">
+    <template v-if="_form.formData?.length == 0">
       <div class="absolute inset-0 grid place-content-center">No form element. Drag n drop</div>
     </template>
     <draggable
       class="h-full space-y-4"
-      v-model="_form"
+      v-model="_form.formData"
       group="form_stuff"
       item-key="name"
       animation="150"
