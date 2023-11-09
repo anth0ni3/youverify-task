@@ -11,8 +11,8 @@ const list1 = ref([
 
 let idGlobal = 8
 
-const _form = templateState().value.formData
-const dragging = isDragActive().value
+const _form = templateState()
+const dragging = isDragActive()
 
 // function log(evt) {
 //   window.console.log(evt)
