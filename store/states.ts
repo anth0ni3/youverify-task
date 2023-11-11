@@ -21,7 +21,7 @@ export enum FormType {
 }
 
 export interface TemplateState {
-  id: number
+  id: string
   creator_name: string
   name: string
   description: string
@@ -32,7 +32,7 @@ export interface TemplateState {
 
 export const templateState = () =>
   useState<TemplateState>('templateState', () => ({
-    id: 0,
+    id: 'eeokeoks',
     name: '',
     description: '',
     creator_name: '',

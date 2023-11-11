@@ -4,8 +4,8 @@ import Checkbox from '~/components/svgs/templates/checkbox.vue'
 import Group from '~/components/svgs/templates/group.vue'
 import List from '~/components/svgs/templates/list.vue'
 import Page from '~/components/svgs/templates/page.vue'
-import FormTextField from '~/components/templates/form-elements/text-field.vue'
-import FormPageField from '~/components/templates/form-elements/page-field.vue'
+import FormTextField from '~/components/form-elements/text-field.vue'
+import FormPageField from '~/components/form-elements/page-field.vue'
 
 export const inputTemplateElements = [
   {

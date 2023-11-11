@@ -25,7 +25,7 @@ export const columns: ColumnDef<Templates>[] = [
     },
   },
   {
-    accessorKey: 'modified_by',
+    accessorKey: 'creator_name',
 
     header: ({column}) => {
       return h(
@@ -37,7 +37,7 @@ export const columns: ColumnDef<Templates>[] = [
         () => ['Modified By', h(ArrowUpDown, {class: 'ml-2 h-4 w-4'})]
       )
     },
-    cell: ({row}) => h('div', {class: 'lowercase'}, row.getValue('modified_by')),
+    cell: ({row}) => h('div', {class: 'lowercase'}, row.getValue('creator_name')),
   },
   {
     accessorKey: 'created_at',

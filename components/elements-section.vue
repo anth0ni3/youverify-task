@@ -1,33 +1,43 @@
 <script setup lang="ts">
-import {inputTemplateElements, layoutTemplateElements} from '~/components/templates/elements'
+import {inputTemplateElements, layoutTemplateElements} from '~/components/elements'
 import draggable from 'vuedraggable'
+import Builder from './builder'
 
-const list1 = ref([
-  {id: 1, name: 'Item 1'},
-  {id: 2, name: 'Item 2'},
-  {id: 3, name: 'Item 3'},
-  {id: 4, name: 'Item 4'},
-])
+const fields = Builder.setup().fields
+// const dragging = ref(Builder.setup().dragging)
 
-let idGlobal = 8
+function clone(field) {
+  let newField = {
+    fieldType: field.name,
+  }
 
-const _form = templateState()
-const dragging = isDragActive()
+  newField['label'] = 'Enter your field label'
 
-// function log(evt) {
-//   window.console.log(evt)
-// }
-function cloneDog(d: any) {
-  return d
-  // return [
-  //   ..._form.value,
-  //   {
-  //     id: idGlobal++,
-  //     type: type,
-  //   },
-  // ]
-  // console.log(d)
+  // Add dummy options for loading the radio/checkbox
+  if (field.hasOptions) {
+    newField['options'] = [
+      {optionLabel: 'Option 1', optionValue: 'Option 1'},
+      {optionLabel: 'Option 2', optionValue: 'Option 2'},
+    ]
+  }
+
+  return newField
 }
+function onStart() {
+  // console.log("start liao")
+}
+// function checkStopDragCondition(field){
+//   var form = this.forms,
+//       formArray = [];
+
+//   for (var key in form) {
+//     formArray.push(form[key]['fieldType'])
+//   }
+
+//   // Check if the fieldname exist in formArray
+//   // And when the field.isUnique too
+//   return _.includes(formArray, field.name) && field.isUnique;
+// }
 </script>
 
 <template>
@@ -39,13 +49,10 @@ function cloneDog(d: any) {
 
         <draggable
           class="space-y-2"
-          v-model="inputTemplateElements"
-          :group="{name: 'form_stuff', pull: 'clone', put: false}"
-          :clone="cloneDog"
-          :sort="false"
+          :list="fields"
+          :group="{name: 'formbuilder', pull: 'clone', put: false}"
+          :clone="clone"
           handle="#drag_handle"
-          @start="dragging = true"
-          @end="dragging = false"
           item-key="name"
         >
           <template #item="{element}">
@@ -57,7 +64,7 @@ function cloneDog(d: any) {
                   <component :is="element.icon"></component>
                 </span>
                 <p>
-                  {{ element.label }}
+                  {{ element.text }}
                 </p>
               </div>
               <span class="grid place-content-center cursor-pointer">
@@ -72,10 +79,9 @@ function cloneDog(d: any) {
         <draggable
           class="space-y-2"
           :list="layoutTemplateElements"
-          :group="{name: 'form_stuff', pull: 'clone', put: false}"
+          :group="{name: 'formbuilder', pull: 'clone', put: false}"
           :sort="false"
-          @start=""
-          :clone="cloneDog"
+          :clone="clone"
           item-key="name"
         >
           <template #item="{element}">

@@ -13,6 +13,8 @@ const options = ref([
     value: 'three',
   },
 ])
+
+const emit = defineEmits(['duplicate', 'remove'])
 </script>
 
 <template>
@@ -22,10 +24,10 @@ const options = ref([
         <span class="p-2 rounded-lg hover:bg-gray-100 cursor-pointer">
           <Save />
         </span>
-        <span class="p-2 rounded-lg hover:bg-gray-100 cursor-pointer">
+        <span class="p-2 rounded-lg hover:bg-gray-100 cursor-pointer" @click="$emit('duplicate')">
           <Copy />
         </span>
-        <span class="p-2 rounded-lg hover:bg-gray-100 cursor-pointer">
+        <span class="p-2 rounded-lg hover:bg-gray-100 cursor-pointer" @click="$emit('remove')">
           <Delete />
         </span>
       </div>

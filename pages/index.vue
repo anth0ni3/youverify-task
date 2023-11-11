@@ -6,30 +6,16 @@ import * as z from 'zod'
 import {columns} from '~/components/templates/columns'
 import type {Templates} from '~/components/templates/columns'
 import {FormField} from '~/components/ui/form'
+import useStore from '~/store'
 
 const isFormOpen = ref(false)
 
-const data = ref<Templates[]>([
-  {
-    id: '728ed52f',
-    created_at: '100',
-    updated_at: 'pending',
-    name: 'm@example.com',
-    modified_by: 'Anthony',
-  },
-  {
-    id: '7282f',
-    created_at: '200',
-    updated_at: 'spending',
-    name: 'me.com',
-    modified_by: 'Anthonia',
-  },
-])
+const store = useStore()
 
 const formSchema = toTypedSchema(
   z.object({
+    creator_name: z.string().min(2).max(50),
     name: z.string().min(2).max(50),
-    template_name: z.string().min(2).max(50),
     description: z.string().min(2).max(50),
   })
 )
@@ -39,7 +25,7 @@ const form = useForm({
 })
 
 const onSubmit = form.handleSubmit(values => {
-  console.log('Form submitted!', values)
+  store.updateActiveTemplate(values)
   isFormOpen.value = false
   navigateTo('/new')
 })
@@ -64,10 +50,10 @@ const onSubmit = form.handleSubmit(values => {
                 <UIDialogClose class="p-2 rounded-full" />
               </UIDialogHeader>
               <div class="space-y-4">
-                <FormField v-slot="{componentField}" name="name">
+                <FormField v-slot="{componentField}" name="creator_name">
                   <UIFormItem>
                     <UIFormLabel
-                      for="name"
+                      for="creator_name"
                       class="text-gray-900 text-sm font-medium font-['BR Sonoma']"
                       >Creator Name</UIFormLabel
                     >
@@ -82,10 +68,10 @@ const onSubmit = form.handleSubmit(values => {
                   </UIFormItem>
                 </FormField>
 
-                <FormField v-slot="{componentField}" name="template_name">
+                <FormField v-slot="{componentField}" name="name">
                   <UIFormItem>
                     <UIFormLabel
-                      for="template_name"
+                      for="name"
                       class="text-gray-900 text-sm font-medium font-['BR Sonoma']"
                       >Template Name</UIFormLabel
                     >
@@ -122,7 +108,7 @@ const onSubmit = form.handleSubmit(values => {
       </div>
     </div>
     <div>
-      <TemplatesTable :data="data" :columns="columns" />
+      <TemplatesTable :data="store.templates" :columns="columns" />
     </div>
   </div>
 </template>
